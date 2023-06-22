@@ -93,7 +93,8 @@ Without next command the configurator will not launch on at least ubuntu 20.04 a
 
 Since we will be using the CLI, simply copy and paste this command into your terminal, it will create the required file for you:
 
-    (echo '# DFU (Internal bootloader for STM32 MCUs)'
+    (echo '# DFU (Internal bootloader for STM32 and AT32 MCUs)'
+     echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"'
      echo 'ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0664", GROUP="plugdev"') | sudo tee /etc/udev/rules.d/45-stdfu-permissions.rules > /dev/null
 
 The file created is `/etc/udev/rules.d/45-stdfu-permissions.rules`, which is used when your flight controller is in DFU mode.
@@ -123,6 +124,8 @@ For this case, we add the group _dialout_ to our userid _user_ using the _usermo
 `[user@machine ~]$ sudo usermod -a -G dialout user`
 
 You will need to log out then log back in and now you should have access to the device.
+
+If you are still not added to the _dialout_ group (you can check that using the `groups` command), try restarting your system.
 
 #### Troubleshooting installation problems:
 
