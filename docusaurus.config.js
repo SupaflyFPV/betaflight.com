@@ -106,14 +106,15 @@ const config = {
     ({
       colorMode: {
         defaultMode: 'dark',
-        disableSwitch: true,
-        respectPrefersColorScheme: false,
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
       },
       navbar: {
         title: 'Betaflight',
         logo: {
           alt: 'Betaflight Logo',
-          src: 'img/betaflight/icon_dark.svg',
+          src: 'img/betaflight/icon_light.svg',
+          srcDark: 'img/betaflight/icon_dark.svg',
         },
         items: [
           //   {
@@ -165,6 +166,11 @@ const config = {
           {
             to: '/partner',
             label: 'Partner',
+            position: 'left',
+          },
+          {
+            to: '/sponsors',
+            label: 'Sponsors',
             position: 'left',
           },
           { to: '/blog', label: 'Blog', position: 'left' },
