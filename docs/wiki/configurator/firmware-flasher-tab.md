@@ -54,16 +54,16 @@ We have defines for <b>ACC</b>, <b>BARO</b>, <b>FLASH</b>, <b>GYRO</b>, <b>MAX74
 
 If your board pheriperals are not recognized please help us add the required configuration details.
 
-<br />
+<br/>
 Reach out to us on our [Discord server](https://discord.betaflight.com/invite) or create an issue in the Betaflight unified targets repo.
-<br />
+<br/>
 To get the required information follow this procedure:
-<br />
-<br />
+<br/>
+<br/>
 1. Flash your board with the <b>Core Only</b> switch enabled
-<br />
+<br/>
 2. Go to the CLI tab and click the <b>Submit Support Data</b> button.
-<br />
+<br/>
 3. With this generated support <b>ID</b> we have all required information to update board configuration files.
 
 :::
@@ -107,26 +107,26 @@ When needed additional protocols like <b>PWM</b> or <b>SERVOS</b> please add the
 
 ### Other Options
 
-| Option                    | Description                                                         |
-| :------------------------ | :------------------------------------------------------------------ |
-| AKK (SA Fix)              | Smartaudio patch for AKK hardware                                   |
-| Acro Trainer              | Enable Acro Trainer support                                         |
-| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)   |
-| Cam. Control              | Enable Camera Control                                               |
-| Dashboard                 | Enable Post-flight overview screen                                  |
-| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC              |
-| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flasing via 4way interface |
-| Flash Storage             | Enable blackbox Flash Tools                                         |
-| FrSky OSD                 | Enable FrSky OSD support                                            |
-| GPS                       | Enable GPS and GPS_PLUS_CODES                                       |
-| LED Strip                 | Enable 32 LEDs                                                      |
-| LED Strip 64              | Enable 64 LEDs                                                      |
-| Magnetometers             | Enable magnetometer                                                 |
-| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                            |
-| OSD (HD)                  | Enable HD OSD                                                       |
-| PIN IO                    | Enable PINIO                                                        |
-| Servos                    | Enable Servo support                                                |
-| VTX                       | Enable VTX                                                          |
+| Option                    | Description                                                          |
+| :------------------------ | :------------------------------------------------------------------- |
+| AKK (SA Fix)              | SmartAudio patch for AKK hardware                                    |
+| Acro Trainer              | Enable Acro Trainer support                                          |
+| Batt. Continue            | See [#11084](https://github.com/betaflight/betaflight/pull/11084)    |
+| Cam. Control              | Enable Camera Control                                                |
+| Dashboard                 | Enable Post-flight overview screen                                   |
+| EMFAT (AutoRun, Icon)     | Enable FAT emulation and icon for onboard flash or MSC               |
+| ESC Serial (SK) Inc. 4way | Enable SimonK and ESC Serial support for flashing via 4way interface |
+| Flash Storage             | Enable blackbox Flash Tools                                          |
+| FrSky OSD                 | Enable FrSky OSD support                                             |
+| GPS                       | Enable GPS and GPS_PLUS_CODES                                        |
+| LED Strip                 | Enable 32 LEDs                                                       |
+| LED Strip 64              | Enable 64 LEDs                                                       |
+| Magnetometers             | Enable magnetometer                                                  |
+| OSD (SD)                  | Enable SD OSD (onboard MAX7456 required)                             |
+| OSD (HD)                  | Enable HD OSD                                                        |
+| PIN IO                    | Enable PINIO                                                         |
+| Servos                    | Enable Servo support                                                 |
+| VTX                       | Enable VTX                                                           |
 
 ## Troubeshooting
 

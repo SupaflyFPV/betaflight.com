@@ -211,7 +211,7 @@ Then in the [Preset Tab](/docs/wiki/configurator/presets-tab), there are a few s
 - FPV.WTF MSP OSD 4.2/4.3
 - FPV.WTF + O3 + Avatar for 4.4
 
-For further information on the newest firmware (4.4), please read the [Release Notes](/docs/release/Betaflight%204.4%20Release%20Notes#2-hd-osd)
+For further information on the newest firmware (4.4), please read the [Release Notes](/docs/wiki/release/Betaflight-4-4-Release-Notes#2-hd-osd)
 
 ## Motor Settings
 
@@ -313,5 +313,5 @@ With all the settings done, you should be ready to fly! Do a final check to make
 be, and do a quick hover test to make sure that everything is working as it should.
 
 If something is not working, go through this page, some of the more common mistakes should've been listed.
-If not here, you can read the [troubleshooting](/docs/wiki/troubleshooting) page to see if you can find a solution. If
+If not here, you can read the [troubleshooting](/docs/wiki/getting-started/troubleshooting) page to see if you can find a solution. If
 you can't find one, ask in the [Discord server](https://discord.betaflight.com/invite)

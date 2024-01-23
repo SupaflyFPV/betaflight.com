@@ -743,7 +743,7 @@ CF Nano RX:
 - Ch2 - TX
 - Ch4 - LQ (for RSSI)
 
-# Smart Audio
+# SmartAudio
 
 SmartAudio uses a UART
 
@@ -877,7 +877,7 @@ Paste these notes:
 C6 8 G5 8 C6 8 E6 8 G6 8 C7 8 G6 8 G#5 8 C6 8 D#6 8 G#6 8 D#6 8 G#6 8 C7 8 D#7 8 G#7 8 D#7 8 D6 8 F6 8 A#6 8 F6 8 A#6 8 D7 8 F7 8 D7 8 F7 8 A#7 8 F7 8
 ```
 
-# BiDirectional Dshot
+# BiDirectional DShot
 
 Update BLHeli && Upgrade to latest Firmware
 Count your Magnets on motors and type that in Betaflight Configurator
@@ -907,7 +907,7 @@ Another thing to take into account is the tuning of your transmitter antenna and
 
 # VTX TABLES
 
-https://betaflight.com/docs/wiki/guides/VTX-Tables
+See [VTX Tables](/docs/wiki/guides/current/VTX-Tables).
 
 ### TBS UNIFY PRO 5G8 HV
 

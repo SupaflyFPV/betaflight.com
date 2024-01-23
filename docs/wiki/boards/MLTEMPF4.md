@@ -1,4 +1,4 @@
-# MotoLab Tempest F4 Flight Controller
+# MotoLab Tempest F4
 
 ![](https://static.rcgroups.net/forums/attachments/4/5/2/0/2/8/a10242740-88-Angle.jpg)
 
@@ -14,9 +14,9 @@ An F4 flight controller with integrated PDB, OSD, MicroSD, and current sensor
 - Betaflight OSD
 - Micro SD slot with DMA support
 - Up to 5 serial ports plus USB
-- Up to 6 Dshot motor outputs
+- Up to 6 DShot motor outputs
 - Serial inverters for SBUS and S.PORT
-- Compatible with TBS Smartaudio and IRC Tramp serial protocols
+- Compatible with TBS SmartAudio and IRC Tramp serial protocols
 - 1.5A 5V short-protected regulator with LC filtered 5V for OSD and camera
 - Plug-in direct connection to VTX and Camera with custom cables
 - Buzzer and serial LED outputs
@@ -71,4 +71,4 @@ _(add your name here if you help test or contribute code for this board)_
 
 ## Similar Targets
 
-[MLTYPHF4](/img/boards/Board-MLTYPHF4)
+[MLTYPHF4](MLTYPHF4)

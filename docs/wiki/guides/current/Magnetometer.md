@@ -24,7 +24,7 @@ The purpose of a magnetometer is to return the 'heading' of the quad, meaning th
 
 Mag information is essential for position hold, which we intend to support, and improves behaviour in GPS Rescue.
 
-GPS Rescue will have improved eading control if reliable, accurate Mag information is available, especially during ascents and descents on windy days.
+GPS Rescue will have improved heading control if reliable, accurate Mag information is available, especially during ascents and descents on windy days.
 
 ## Summary
 
@@ -54,7 +54,7 @@ For most Mag modules, if the magnetometer has arrows indicating the direction of
 - upwards, if the Y axis is 90° to the left of X axis, or
 - downwards, if the Y axis is 90° to the right of the X axis
 
-When one of the Mag sensor's three axes points directly parallel to a magnetic field line, that axis returns its most positive value, and the other two axes return zero. Conversely, when pointing into the opposite direction, the axis returns its most negative value, and the other two axes return zero. This is how the user can determine the orietnation of the axes in their module.
+When one of the Mag sensor's three axes points directly parallel to a magnetic field line, that axis returns its most positive value, and the other two axes return zero. Conversely, when pointing into the opposite direction, the axis returns its most negative value, and the other two axes return zero. This is how the user can determine the orientation of the axes in their module.
 
 :::caution
 The orientation of the magnetometer on the quad is very important. In Betaflight, the data from the magnetometer must be returned as follows:
@@ -66,19 +66,17 @@ The orientation of the magnetometer on the quad is very important. In Betaflight
 Always use the Sensors tab to confirm that the sensor orientation is correct. If the Mag is an IST8310, its non-compliant Y axis orientation must be corrected with a custom configuration that rotates the Y axis by 180 degrees.
 :::
 
-<figure className="align-center">
-  <img src={MagOrientation} alt="Figure of magnetometer axes and orientation" className="no-effect " />
-  <figcaption>
-    <b>Fig. 1</b> - Magnetometer axes and orientation in relation to the drone as expected by Betaflight
-  </figcaption>
-  <br />
-</figure>
+<div align="center">
+![Betaflight Configurator](/img/MagOrientationDiagram.png)
+**Fig. 1** - Magnetometer axes and orientation in relation to the drone as expected by Betaflight.
+<br></br>
+</div>
 
 In most standalone modules, such as the GY-271 board, the sensor is soldered on the top of the board, and typically the Z axis points upwards. In most GPS modules, the sensor is mounted upside-down, and the Z axis points downwards. The sensor can be soldered with it's X axis faces forward, or 180 degrees backwards, or left, or right. Hence the orientation of the axes varies greatly from module to module.
 
 The orientation of the axis also varies according to the orientation of the module when it is attached to the quadcopter.
 
-If the magnetometer cannot be physically positioned so that its axes are aligned as per the diagram above, the `Mag alignment` setting in Configurator (`align_mag` in the [CLI](../configurator/cli-tab)) may be used to correct for other mag orientations. Standard corrections (e.g. `CW90` to rotate the axes 90 degrees clockwise) are provided for common alignment problems. If the module is tilted backwards, or at an unusual angle, a `custom` orientation correction will be required.
+If the magnetometer cannot be physically positioned so that its axes are aligned as per the diagram above, the `Mag alignment` setting in Configurator (`align_mag` in the [CLI](/docs/wiki/configurator/cli-tab) may be used to correct for other mag orientations. Standard corrections (e.g. `CW90` to rotate the axes 90 degrees clockwise) are provided for common alignment problems. If the module is tilted backwards, or at an unusual angle, a `custom` orientation correction will be required.
 
 The correct orientation of a given axis should be confirmed by checking the Magnetometer data in the Sensors tab.
 
@@ -106,12 +104,14 @@ In Betaflight 4.5, the CLI variable `mag_declination` was introduced, to correct
 
 ## Hardware and Connection
 
-Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and use GPS debugs to display the Mag heading information.
+Betaflight's build system must include `Magnetometers`, from the dropdown in the cloud build, or `-DUSE_MAG` for local builds, otherwise there will be no Mag support in the firmware. There is no need to explicitly request the inclusion of any specific driver for a specific mag, because all supported Mag drivers will be included in the build.
+
+Additionally, GPS firmware should be included in the build, because we display the Mag heading on Configurator's GPS tab, and becayse GPS debugs are used to display Mag heading information.
 
 Betaflight provides drivers for the following magnetometers, but not all have been validated to work with Betaflight 4.5 at the time of writing:
 
-- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. We recommend using this mag if it is an option for your build, because it's performance has been validated during testing - we know it works well.
-- [IST8310](https://intofpv.com/attachment.php?aid=8104)[^9] Note that this gyro has a highly unusual axis orientation, with Y to the _right_ when X is forward and Z is up, and will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity.
+- [QMC5883L](https://datasheet.lcsc.com/szlcsc/QST-QMC5883L-TR_C192585.pdf)[^8]. The QMC5883L is provided on the common, and cheap, GY-217 module, and many GPS units. It provides a 200Hz data update rate, 8x sample averaging and 3000 LSB/Gauss sensitivity. Standard axis orientation. Default i2c address 13. We recommend using this mag if it is an option for your build, because it's performance has been validated during testing - we know it works well.
+- [IST8310](https://isentek.com/userfiles/files/IST8310Datasheet_3DMagneticSensors.pdf)[^9] Note that this Mag has a highly unusual axis orientation. Y is to the _right_ when X is forward and Z is up. This Mag will _always_ require a custom axis orientation in the CLI. Data update rate is 160Hz with 16x sample averaging and 330 LSB/Gauss sensitivity. Also note that the IST8310 can have any of four i2c addresses, depending on how the manufacturer of the FC wires it up. Betaflight's driver will connect automatically if the address is configured to be 12, the manufacturer's recommended default. If it does not connect automatically, try set `mag_i2c_device` to either 13, 14 or 15, one of those values should work.
 - [STM's LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf)[^10] This mag is integral to a combined Gyro, Acc and Mag '9 axis' chip from STM. Standard axis orientation.
 - [HMC5883L](https://cdn-shop.adafruit.com/datasheets/HMC5883L_3-Axis_Digital_Compass_IC.pdf)[^7] ODR is 75Hz with 1090 LSB/Gauss sensitivity; discontinued and replaced by the QMC6883L. Standard axis orientation. Validated.
 - Deprecated: [AK8963](https://www.alldatasheet.com/datasheet-pdf/pdf/535561/AKM/AK8963.html)[^5] and [AK8975](https://www.alldatasheet.com/datasheet-pdf/pdf/535562/AKM/AK8975.html)[^6], (both discontinued; some versions have Z up, others down, all return standard axis orientation when mounted with X forward).
@@ -127,13 +127,18 @@ Magnetometer detection takes place on power up. Make sure that the Mag powers up
 
 :::
 
-The magnetometer is usually connected via i2C. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending its requirements.
+The magnetometer is usually connected via i2C. All supported magnetometers are specified only up to 400Hz 'fast' mode. Wire up the SCL and SDA pins on the module to the pins of the same name on the FC, and power the module with either 5V or 3.3V depending its requirements.
 
-When connected by i2C, the following CLI settings are needed:
+When connected by i2C, the following CLI settings usually work:
 
 - `set mag_bustype = I2C`
 - `set mag_i2c_address = 0` (automatically determine from the connected Mag)
-- `set mag_i2c_device = 1` (always 1, not sure why)
+- `set mag_i2c_device = 1` (depending on which i2c bus the FC has pinned out; this is usually set automatically for you if the board config is correct)
+
+If the mag is not detected:
+
+- it could be that the FC is using i2c device 2, not device 1, for external i2c mag or baro chips. Check the data sheet for the FC. You can try using `set mag_i2c_device = 2` to see if it will connect.
+- the IST8310 may be not connect on its default address of 12. If it is not detected with `set mag_i2c_address = 0`, try `mag_i2c_address` values of 13, 14 or 15..
 
 When the firmware is built with Mag support, the Accelerometer enabled, and a supported Magnetometer is wired up properly, Mag can be enabled in the Configurator's System Configuration tab, and saved. From that point:
 
@@ -297,8 +302,8 @@ Calibration itself **DOES NOT** check that the orientation of the sensor is corr
 The quad must be disarmed. There are two ways to initiate the calibration process:
 
 - clicking the `Calibrate Magnetometer` button in Configurator, keeping connected with a long USB cable.
-- using stick commands on the radio (be absolutely sure that the quad is disarmed!):
-  - right stick straight dowm (pitch low with roll centred)
+- using stick commands on a mode 2 radio (be absolutely sure that the quad is disarmed!):
+  - right stick straight down (pitch low with roll centered)
   - left stick in the top right corner (throttle high and yaw fully right)
 - you then have 15s in which to 'tap the frame' hard, which starts the calibration process itself
 
@@ -353,7 +358,7 @@ Using the sensors tab to check max and min values for each axis can also validat
 
 Heading information is provided to the quad by the GPS unit (course over ground), the IMU (gyro information while turning quickly), and the Mag unit. The IMU code uses 'sensor fusion' methods to integrate the available data to a final 'attitude' or 'heading' value for the quad.
 
-The current Heading is shown shown on the main front screen of Configurator, at the top left of the quad icon area. If Mag is enabled, the heading shown reflects Mag data, and will return a value indicating the angle of the nose of the quad relative to North. Without a mag, the heading value always starts at 0 or 359 degrees, and only changes because integral of the gyro data can be used to indicate a relative change in yaw since arming.
+The current Heading is shown on the main front screen of Configurator, at the top left of the quad icon area. If Mag is enabled, the heading shown reflects Mag data, and will return a value indicating the angle of the nose of the quad relative to North. Without a mag, the heading value always starts at 0 or 359 degrees, and only changes because integral of the gyro data can be used to indicate a relative change in yaw since arming.
 
 If the code is built with GPS support, both the current Mag heading and the GPS course over ground heading are shown in Configurator's GPS tab.
 

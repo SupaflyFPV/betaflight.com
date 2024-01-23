@@ -67,7 +67,7 @@ Therefore be sure to Read the Release Notes to know what commands or features ar
 1. [Why do LED strips not work ?](#why-do-led-strips-not-work-)
 1. [Recently with the temps dropping, my quad has started to develop a random twitch. Anyone else experience random issues when it's 20'ish degree's F outside ?](#recently-with-the-temps-dropping,-my-quad-has-started-to-develop-a-random-twitch.-Anyone-else-experience-random-issues-when-it's-20'ish-degree's-F-outside-)
 1. [Why can't I connect to my flight controller using MSP over UART1?](#why-cant-i-connect-to-my-flight-controller-using-msp-over-uart1)
-1. [Is it possible that we can flash the Frsky receivers thru the flight controller like we now flash the ESC?](#is-it-possible-that-we-can-flash-the-frsky-receivers-thru-the-flight-controller-like-we-now-flash-the-esc)
+1. [Is it possible that we can flash the FrSky receivers thru the flight controller like we now flash the ESC?](#is-it-possible-that-we-can-flash-the-frsky-receivers-thru-the-flight-controller-like-we-now-flash-the-esc)
 1. [Is there a way to dismiss the OSD post flight statistics screen?](#is-there-a-way-to-dismiss-the-osd-post-flight-statistics-screen)
 
 **If your question is not listed above then please check the following pages:**
@@ -524,7 +524,7 @@ Good tuning just makes that feel tighter and helps removing unnecessary oscillat
 
 d. Battery Factor: "A while ago someone took over my pids to his quad with same setup and he said it didn't feel good. So I flew his setup and it indeed felt like PIDs were twice as low as they should be! It appeared he was using almost 2 years old (Turnigy) Nanotechs completely lost their power. Even I feel huge difference between different batteries I have." - Boris comment
 
-Also Read the [PID Tuning Guide](PID-Tuning-Guide) the [Black Box logging and usage](Black-Box-logging-and-usage) support pages.
+Also Read the [PID Tuning Guide](PID-Tuning-Guide) the [Black Box logging and usage](/docs/wiki/guides/current/Black-Box-logging-and-usage) support pages.
 
 ## Why does my copter behave erratic after a crash ?
 
@@ -563,7 +563,7 @@ Take a look at this overview as it describes how this should be done: http://www
 
 Some additional information can be found from 6:20 onwards in this video: http://www.youtube.com/watch?v=htkw7d97bOo
 
-NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](/docs/wiki/guides/current/Failsafe.md).
+NOTE: Failsafe configuration has changed in Betaflight 2.4.0 onwards and CF Configurator 1.2.0. The relevant documentation can be found [here](/docs/wiki/guides/current/Failsafe).
 
 A good method for RX's that do NOT have a FailSafe output (no Pulses):
 [Setting Up Failsafe on FrSky BeeBrain](http://fpvobsession.com/setting-up-failsafe-on-frsky-beebrain/)
@@ -1707,7 +1707,7 @@ I see the comments about notch filters helping with the noise issues, and the co
 Boris:
 You can of course make the filtering more agressive, but readings from ICM20xxx gyros can be too messy on hardmounted solutions so softmounting to make them less sensitive seems like the only solution on those, where on mpu60x0 you would mostly get away on standard mounting.
 
-##### Post on testing Dshot before and after adding Large, low ESR caps to power system:
+##### Post on testing DShot before and after adding Large, low ESR caps to power system:
 
 https://www.rcgroups.com/forums/showpost.php?p=36713066&postcount=3133
 https://www.rcgroups.com/forums/showpost.php?p=36718584&postcount=3144
@@ -1750,7 +1750,7 @@ It took all that and removing gyro notch filters / PT1 fix to get the F60 Pro qu
 
 ### Can Filter tuning help?
 
-The newer filters in 3.0 & 3.1 have pretty aggressive defaults. A number of fliers have reduced oscillation issue be reducing the use of the filters. See the [Gyro & Filters ](Gyro-&-Dterm-filtering-recommendations) support page for details and discussions.
+The newer filters in 3.0 & 3.1 have pretty aggressive defaults. A number of fliers have reduced oscillation issue be reducing the use of the filters. See the [Gyro & Filters 3.1](/docs/wiki/guides/archive/Gyro-And-Dterm-Filtering-Recommendations-3-1) support page for details and discussions.
 
 ## Is there a way to download blackbox logs through a terminal client ?
 
@@ -1793,7 +1793,7 @@ Since Betaflight 3.1, MSP on UART is no longer enabled by default. To enable it,
 
 Follow the instructions under "development", but add `OPTIONS=USE_MSP_UART` to your make command. For example: `make CC3D OPTIONS=USE_MSP_UART`. Instead of `CC3D`, you can use [any target that Betaflight supports](#which-hex-target-do-i-download-and-flash-to-my-flight-controller-).
 
-## Is it possible that we can flash the Frsky receivers thru the flight controller like we now flash the ESC?
+## Is it possible that we can flash the FrSky receivers thru the flight controller like we now flash the ESC?
 
 That's done by Fishpepper;
 [OpenSky / tinyFISH](http://fishpepper.de/2017/02/24/opensky-tinyfish-how-to-update-the-opensky-receiver-firmware-through-betaflight/)

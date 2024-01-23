@@ -59,11 +59,11 @@ Rev2 (Full Size)
 
 ### Wiring Diagrams
 
-![Wiring Diagram - rev4](https://betaflight.com/assets/img/boards/bluejayf4/bluejayf4-rev4-wiring.png)
+![Wiring Diagram - rev4](/img/boards/bluejayf4/bluejayf4-rev4-wiring.png)
 
-![Wiring Diagram - rev3](https://betaflight.com/assets/img/boards/bluejayf4/bluejayf4-rev3-wiring.jpg)
+![Wiring Diagram - rev3](/img/boards/bluejayf4/bluejayf4-rev3-wiring.jpg)
 
-### Frsky Smartport
+### FrSky Smartport
 
 Frysky smartport (or s-port) is inverted, and half duplex. You can modify your X4R or XSR by following the procedure here [https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/](https://blck.mn/2016/06/smartport-the-frsky-x4rs-and-betaflight/) and here (for a cleaner modification thats easily switchable between inverted and non-inverted) [https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/](https://blck.mn/2016/12/smartport-frsky-x4rs-and-betaflight-part-2/)
 
@@ -79,9 +79,9 @@ You will need to run the following in the CLI:
 
 Serial Wire Debug output is located on the bottom of the board, and provides a pin out compatible with STM32Fx discovery boards to be used as a SWD adapter:
 
-![Wiring Diagram - rev4 SWD](https://betaflight.com/assets/img/boards/bluejayf4/bluejayf4-rev4-wiring-swd.png)
+![Wiring Diagram - rev4 SWD](/img/boards/bluejayf4/bluejayf4-rev4-wiring-swd.png)
 
-![bjf4-swd-rev2](https://betaflight.com/assets/img/boards/bluejayf4/bluejayf4-rev2-wiring-swd.jpg)
+![bjf4-swd-rev2](/img/boards/bluejayf4/bluejayf4-rev2-wiring-swd.jpg)
 
 # Known Issues:
 

@@ -1,11 +1,11 @@
-# Board Omnibus F4 Nano V7
+# Omnibus F4 Nano V7
 
 This is the new Nano FC from Airbot! With added features in comparison to the predecessor.
 
 ## Features
 
 - ICM20602 Gyro connected via SPI
-- FPC port for Frsky RX
+- FPC port for FrSky RX
 - STM32F405
 - 16MByte of Flash connected via SPI
 - 3-6s Lipo capable

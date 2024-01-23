@@ -1,4 +1,4 @@
-# Boards - STM32Discovery
+# STM32 Discovery
 
 STM32Discovery boards are relatively cheap boards featuring STM32 MCUs manufactured and distributed by [STMicroelectronics](https://www.st.com/). They are known as "tinkerer boards", not specifically as flight controllers, as they can be used for a variety of things. They are bigger and heavier than standard flight controllers, feature plug pins for ease of use and quick changes, no soldering required.
 
@@ -10,7 +10,7 @@ Solid documentation is provided by STMicroelectronics.
 
 | Target               | MCU           | Documentation                                                                                                                                                                                                                                                             |
 | -------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `STM32F3DISCOVERY`   | `STM32F303VC` | [User Manual](https://www.st.com/content/ccc/resource/technical/document/user_manual/8a/56/97/63/8d/56/41/73/DM00063382.pdf/files/DM00063382.pdf/jcr:content/translations/en.DM00063382.pdf) \| [MCU Datasheet](www.st.com/resource/en/datasheet/stm32f303vc.pdf)         |
+| `STM32F3DISCOVERY`   | `STM32F303VC` | [User Manual](https://www.st.com/content/ccc/resource/technical/document/user_manual/8a/56/97/63/8d/56/41/73/DM00063382.pdf/files/DM00063382.pdf/jcr:content/translations/en.DM00063382.pdf) \| [MCU Datasheet](https://www.st.com/resource/en/datasheet/stm32f303vc.pdf) |
 | `STM32F4DISCOVERY`   | `STM32F407VG` | [User Manual](https://www.st.com/content/ccc/resource/technical/document/user_manual/70/fe/4a/3f/e7/e1/4f/7d/DM00039084.pdf/files/DM00039084.pdf/jcr:content/translations/en.DM00039084.pdf) \| [MCU Datasheet](https://www.st.com/resource/en/datasheet/stm32f407vg.pdf) |
 | `STM32F411DISCOVERY` | `STM32F411VE` | [User Manual](https://www.st.com/content/ccc/resource/technical/document/user_manual/e9/d2/00/5e/15/46/44/0e/DM00148985.pdf/files/DM00148985.pdf/jcr:content/translations/en.DM00148985.pdf) \| [MCU Datasheet](https://www.st.com/resource/en/datasheet/stm32f411re.pdf) |
 

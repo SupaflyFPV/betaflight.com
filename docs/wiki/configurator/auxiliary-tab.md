@@ -7,7 +7,7 @@ sidebar_position: 9
 Modes are used to enable or disable features and trigger FC actions using AUX channels switches. Modes are enabled
 when Ranges or Links are active.
 
-- **Ranges** - activate when the receiver channel matches the specified input values.
+- **Ranges** - activate when the receiver channel matches the specified input values. A receiver channel that gives a reading between a range min/max will activate the mode.
 
 - **Links** - activate when another linked Mode is active.
 
@@ -67,7 +67,7 @@ Multiple Ranges, Links can be matched, combined using boolean AND or OR operator
 
 - **CAMERA CONTROL 3** custom action to configure a Runcam compatible camera device. Used to control some Runcam/Caddx HD recorders
 
-- **FLIP OVER AFTER CRASH** activates Turtle Mode where the quad will spin props on one side only in reverse to flip over if crashed upside down. Dshot required
+- **FLIP OVER AFTER CRASH** activates Turtle Mode where the quad will spin props on one side only in reverse to flip over if crashed upside down. DShot required
 
 - **BOXPREARM** if enabled provides a 2-stage arming method. PREARM switch must be activated before ARM can be used for additional safety
 
@@ -92,3 +92,13 @@ Multiple Ranges, Links can be matched, combined using boolean AND or OR operator
 - **DISABLE VTX CONTROL** disable control of the VTX settings through the OSD
 
 - **LAUNCH CONTROL** race assistance start system. Spins motors and tilts craft forward to the desired angle without taking off
+
+- **MSP OVERRIDE** enable MSP Override mode
+
+- **STICK COMMANDS DISABLE** disable/enable stick command
+
+- **BEEPER MUTE** disable/enable beeper including warning, status and BEEPER mode
+
+- **READY** show 'READY' in the OSD using a switch
+
+- **LAP TIMER RESET** reset lap timer

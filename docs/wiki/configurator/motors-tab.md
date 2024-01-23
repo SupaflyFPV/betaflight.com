@@ -53,7 +53,7 @@ BLHeli_S, BLHeli_32, BlueJay or AM32 ESCs should all use DShot
 By default includes only RPM
 data but can be expanded with the `dshot_edt` CLI command to also enable ESC voltage, current and temperature
 data via DShot telemetry (requires newer BlueJay/AM32/BLHELI32 ESC firmware).
-[Extended Dshot Telemetry (EDT)](https://github.com/bird-sanctuary/extended-dshot-telemetry) allows ESCs to return
+[Extended DShot Telemetry (EDT)](https://github.com/bird-sanctuary/extended-dshot-telemetry) allows ESCs to return
 telemetry data over the signal wire without requiring additional UART connections. EDT allows for telemetry from 8-bit
 ESCs running BlueJay as well as 32bit ESCs running AM32 or BLHELI32. This simplifies wiring and FC configuration for
 pilots.
@@ -89,8 +89,8 @@ out of dives and decreased to avoid unwanted downward thrust during inverted man
 :::info
 
 Air mode does not work properly when using 3D mode, you should disable permanent Air Mode in the
-[Configuration Tab](https://betaflight.com/docs/wiki/configurator/configuration-tab#other-features) and configure Air
-Mode on a switch in the [Modes Tab](https://betaflight.com/docs/wiki/configurator/modes-tab) so that Air Mode is
+[Configuration Tab](/docs/wiki/configurator/configuration-tab#other-features) and configure Air
+Mode on a switch in the [Modes Tab](/docs/wiki/configurator/modes-tab) so that Air Mode is
 disabled when 3D mode is activated. Simply set the "Air Mode" mode range to be the same switch channel and values as
 the "Disable 3D Mode" mode range.
 

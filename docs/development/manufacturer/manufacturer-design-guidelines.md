@@ -1,7 +1,17 @@
+import ThemedImage from '@theme/ThemedImage'
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
 # Betaflight Flight Controller Manufacturer Design Guidelines
 
 <p className="flex flex-col">
-  <img src="/img/betaflight/logo_dark.svg" className="no-effect h-40 mt-4"></img>
+  <ThemedImage 
+    alt="Betaflight"
+    className="no-effect h-40 mt-4"
+    sources={{
+      light: useBaseUrl('/img/betaflight/logo_light.svg'),
+      dark: useBaseUrl('/img/betaflight/logo_dark.svg'),
+    }}
+  />
 </p>
 
 ## Version Change Register
@@ -19,6 +29,7 @@
 | Draft 0.9 | 14 January 2023  | Add FC LEDs                       |
 | Draft 1.0 | 26 January 2023  | Add Signal Rules                  |
 | Draft 1.1 | 10 December 2023 | Add LSM6DSV16X and LPS22DF        |
+| Draft 1.2 | 13 January 2024  | Add Mag and Baro hardware note    |
 
 Thank you for considering or continuing your development of Betaflight capable flight control hardware.
 
@@ -50,9 +61,9 @@ Achieving state of the art performance requires minimizing latency in craft resp
 | :------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ADC                 | Analog to Digital Converter                                                                                                                                                                     |
 | BEC                 | Battery Elimination Circuit                                                                                                                                                                     | Electronic voltage regulator circuit that provides a specified voltage to a single output power rail                                                                                                                                               |
-| Bidirectional DSHOT | Two-Way DSHOT communication protocol to enable Electronic Speed Controller telemetry to be sent back to the flight controller                                                                   | [wiki](/wiki/guides/Bidirectional-DSHOT-and-RPM-Filter.md)                                                                                                                                                                                         |
+| Bidirectional DSHOT | Two-Way DSHOT communication protocol to enable Electronic Speed Controller telemetry to be sent back to the flight controller                                                                   | [wiki](/docs/wiki/guides/current/DSHOT-RPM-Filtering)                                                                                                                                                                                              |
 | Bit Bang            | Bit-banging refers to any instance of utilizing GPIO functionality to digitally create signals in place of dedicated hardware. This can alleviate some specific data buffer timing requirements |
-| DSHOT               | Digital Shot Communication Protocol used for Flight Controller to Electronic Speed Controller                                                                                                   | [wiki](/wiki/guides/DSHOT-ESC-Protocol.md)                                                                                                                                                                                                         |
+| DSHOT               | Digital Shot Communication Protocol used for Flight Controller to Electronic Speed Controller                                                                                                   | [wiki](/docs/wiki/guides/archive/DSHOT-ESC-Protocol-3-1)                                                                                                                                                                                           |
 | ESC                 | Electronic Speed Controller                                                                                                                                                                     | https://us.aspina-group.com/en/learning-zone/columns/what-is/021/                                                                                                                                                                                  |
 | FPV                 | First Person View                                                                                                                                                                               | This can also refer to the complete avionics-telemetry supplied via a camera & video transmission system                                                                                                                                           |
 | GPIO                | General Purpose Input/Output                                                                                                                                                                    | Reconfigurable digital signal pin that can be selected from an MCU pin                                                                                                                                                                             |
@@ -155,6 +166,54 @@ For connector pinout please refer to the [Betaflight Connector Standard](connect
 
 Selecting an appropriate IMU for flight controller operation is critical to the resulting flight performance of systems. Proven examples of hardware using single Invensense MPU-6000, single or dual ICM-20602, and also Bosch BMI-270 and BMI-180 units have been successfully demonstrated to operate with Betaflight, although the latter two examples have required significand development effort to bring performance of the IMU gyroscope and accelerometer sensing behaviors up to the standards required to maximize flight performance.
 
+:::note
+
+We do not recommend using the Bosch BMI-270 IMU, because its gyroscope is uncalibrated. As a result, when gyro is integrated to return a change in attitude, the new attitude estimate can be in error, sometimes as much as 5% or 10%. This causes an angle offset until the accelerometer data can be used.
+
+:::
+
+**Barometer selection**
+
+The Bosch BMP280 is a commonly used barometer. The 'real' unit is marked "Bosch BMP280" on the metal case. Sometimes it is replaced with a 'clone' which mimic the BMP280 in appearance, and reports the same i2C address and data structures, so that they show up as being a BMP280 in Betaflight. Manufacturers should only say that a board has a BMP280 barometer if it is a 'real' Bosch manufactured barometer. If a clone of the BMP280 is used, the name of the barometer used must be shown, eg A7L01, ASK03, and the manufacturer must confirm that the clone is as accurate as the original Bosch BMP280.
+
+The recommended i2C address for the BMP280 is 0x76, with SDO grounded, permitting automatic address identification by Betaflight.
+
+The plastic-cased, individually calibrated Infineon DPS310 provides a significant improvement in absolute and relative altitude accuracy, and much lower noise levels, compared to the BMP280. Each individual Infineon DPS310 is programmed with custom temperature correction coefficients at the time of its manufacture, ensuring exceptionally accurate temperature measurement, and thereby very accurate pressure measurement in response to temperature changes.
+
+Unfortunately, we note that many manufacturers are using 'clones' of the DPS310, typically with an integral metal case that has a small hole. Because these devices report the same i2C ID as the 'real' DPS310, and use the same control and data registers, Betaflight reports them as being DPS310's, and will return pressure values. However, unlike the real DPS310, logging has shown that these clones typically report incorrect temperature readings, most likely because the custom temperature coefficients for the chip are not written individually at production time. Incorrect temperature readings may lead to altitude errors. A number users have reported inappropriate barometer readings with these clones.
+
+The Infineon DPS310 was updated to the Infineon DPS368 in late 2019, and the DPS368 has even greater accuracy than the DPS310.
+
+:::note
+
+Metal-cased clones of the DPS310 barometer should NOT be used unless they report temperature accurately
+
+Manufacturers who use clones of the Infineon DPS310 barometer MUST NOT claim that their barometer is a DPS310.
+
+We strongly recommend the latest Infineon DPS368 barometer, or the earlier Infineon DPS310, both of which are marked 'Infineon' and are supplied in a plastic case.
+
+:::
+
+**Magnetometer selection**
+
+The IST8310 magnetometer has an unusual axis orientation, where the Y axis is 180 degrees rotated compared to all the other commonly used magnetometers. The user must use custom mag orientation values for correct functioning of the IST8310. It is not possible for the user to just apply a simple rotation to correct the IST8310. For this reason we do not recommend using the IST8310 magnetometer with Betaflight.
+
+:::note
+
+The use of magnetometers with non-standard axis orientations is not recommended.
+
+:::
+
+Note also that the IST8310 magnetometer can be configured with any one of four i2C adresses. Betaflight will only connect to the IST8310 automatically if the default i2C address of 0x0C is used. If any of the other three i2C addresses (0x0D, 0x0E, 0x0F) are used, the user will need to custom enter either 13, 14 or 15 as the `mag_i2c_address` value, or it will not work.
+
+The QMC5883L has 'normal' axis orientation and works well.
+
+:::note
+
+Where a barometer or magnetometer has a configurable i2C address, always use the default address, so that it can be automatically detected in Betaflight
+
+:::
+
 ### 3.1.3 Future IMU Options and How to Select Preferred Options
 
 Future IMU selection should be carried out with close involvement of the Betaflight development group. In cases such as the ICM-42688-P, ICM-42688-V, or ICM-42605, early hardware validation samples should be explored in collaboration with Betaflight developers to determine the suitability of these IMU units in relevant environments.
@@ -219,7 +278,7 @@ Each LED should be connected to a GPIO line. Polarity of the output does not mat
 | 1          | Green  | Preferably |
 | 2          | Amber  | No         |
 
-For details of the use of these LEDs, please see the [FC LEDs](FC LEDs.md) documentation
+For details of the use of these LEDs, please see the [FC LEDs](FC LEDs) documentation
 
 ## 3.2 Resource Selection Considerations
 
@@ -237,7 +296,7 @@ G4 and H7 have very flexible DMA controls, therefore we have no specific require
 
 F7X2 MCUs provide greater flexibility and do not require inverters in order to support protocols such as SBUS, SmartPort, or F.Port. They also do not exhibit the SPI 1 DMA limitations of F4 processors.
 
-Bitbang Dshot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions
+Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - Do NOT use these timers for any other functions
 
 #### 3.2.1.3 F4 Resource Selection
 
@@ -247,7 +306,7 @@ For Betaflight 4.4 and later versions, the expected default configuration will t
 
 If using Bitbang DShot, when SPI Bus #1 is to be used for the gyro, care must be taken to ensure that motor pins are assigned to appropriate timers. This is because Bitbang DSHOT uses DMA2 to write to GPIO ports. If this is enabled, it is not possible to enable DMA on an SPI bus using DMA2.
 Practically speaking this means that we can’t support DMA on SPI bus 1 (which uses DMA2) on F405 and F411 processors. It is better to put multiple devices on other SPI busses that use SPI bus 1, which is typically used for the gyro.
-Bitbang Dshot communcation protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
+Bitbang DShot communcation protocol will always use Timer 1 and Timer 8 - do NOT use these pins for any other functions.
 
 Further reading: Section 2.1.10 of the errata at
 https://www.st.com/resource/en/errata_sheet/dm00037591-stm32f405407xx-and-stm32f415417xx-device-limitations-stmicroelectronics.pdf

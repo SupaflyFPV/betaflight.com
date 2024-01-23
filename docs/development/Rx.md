@@ -183,7 +183,7 @@ Enable with cli:
 
 It supports 16 channels with a transfer rate of 100Hz. The HS option (High Speed) is currently not supported.
 The receiver must be configured in the device manager to EX Bus and connected to a free FC serial _TX_ pin.
-For more information on the wiring and setup see [this document](resources/How.to.setup.your.RX.and.FC.for.Jeti.Ex-Bus.pdf).
+For more information on the wiring and setup see [this document](resources/Jeti-Ex-Bus-Setup.pdf).
 
 ## MultiWii serial protocol (MSP)
 
@@ -386,7 +386,7 @@ When active with Betaflight firmware, the `ADC filter` causes:
 
 This is why, whenever an OpenTx or EdgeTx user is using Betaflight, the OpenTx/EdgeTx `ADC Filter` **MUST** be disabled, for accurate smooth flight control.
 
-The user only has to find the `ADC Filter` checkbox in the Hardware tab of the Global Settings for their radio, and ensure it is un-checked. For example, with the Frsky Taranis X9D+ pre 2019 model:
+The user only has to find the `ADC Filter` checkbox in the Hardware tab of the Global Settings for their radio, and ensure it is un-checked. For example, with the FrSky Taranis X9D+ pre 2019 model:
 
 - Turn on your radio.
 - Hold Menu to access Global Settings.

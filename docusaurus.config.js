@@ -4,6 +4,7 @@
 const lightCodeTheme = require('prism-react-renderer').themes.github
 const darkCodeTheme = require('prism-react-renderer').themes.dracula
 const math = require('remark-math')
+const mentions = require('remark-mentions')
 const katex = require('rehype-katex')
 
 require('dotenv').config()
@@ -40,6 +41,14 @@ const config = {
   },
 
   themes: ['@docusaurus/theme-mermaid'],
+
+  scripts: [
+    {
+      src: 'https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js',
+      'data-app-id': 'CDC108A1-CA11-4111-B086-0474C07C3D0F',
+      async: false,
+    },
+  ],
 
   plugins: [
     [
@@ -83,7 +92,15 @@ const config = {
           // Remove this to remove the "edit this page" links.
           /*editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',*/
-          remarkPlugins: [math],
+          remarkPlugins: [
+            math,
+            [
+              mentions,
+              {
+                usernameLink: (username) => `https://github.com/${username}`,
+              },
+            ],
+          ],
           rehypePlugins: [katex],
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
             const sidebarItems = await defaultSidebarItemsGenerator(args)
